@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="./CSS/register.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="javascript/register.js"></script>
+</head>
+ <body>
+    <div class="container">
+        <h2>Register</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="@username" required>
+                <div class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" >
+                <div class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" required>
+                <div class="error"></div>
+
+            </div>
+            <div class="form-group">
+                <label for="Cpassword">Confirm Password</label>  
+                <input type="password" class="form-control" id="Cpassword" placeholder="Password" required>
+                <div class="error"></div>
+
+            </div>
+            <button type="submit" class="btn" id="registerBtn">Signup</button>
+        </form>
+    </div>
+</body>
+</html>

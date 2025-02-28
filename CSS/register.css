@@ -1,0 +1,92 @@
+
+body {
+    background-color: rgb(133, 174, 206); /* Light gray background */
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.container {
+    background:#e1e8eb;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+}
+
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+}
+
+
+input.form-control {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+
+button.btn {
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    color: #fff;
+
+    transition: background-color 0.3s ease;
+}
+
+button.btn:hover {
+    background-color:  #4b1782;
+}
+
+.form-group input:focus{
+outline: 0px  ;
+}
+.form-group .error{
+    color: red;
+    font-size: 16px;
+    margin-top: 5px;
+}
+.form-input .success input{
+    border-color: rgb(59, 127, 59);
+}
+.form-group .error input{
+      border-color: red;
+}
+
+@media (max-width: 576px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+
+.successinput{
+    border: 1px solid green !important;
+}
+
+.errorinput{
+    border: 1px solid red !important;
+}

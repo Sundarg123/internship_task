@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgb(133, 174, 206);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    background:#e1e8eb;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input[type="email"],
+  input[type="password"] {
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: 0;
+  }
+  
+  button {
+    padding: 12px;
+    margin-top: 10px;
+    background:blue;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #4b1782;
+  }
+  
+  a {
+    color: #2575fc;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 10px 0;
+    text-align: right;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  .signup {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  
+  label {
+    color: #6a11cb;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  label:hover {
+    text-decoration: underline;
+  }
+
+  .error{
+    color: red;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+  
+  

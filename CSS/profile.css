@@ -1,0 +1,89 @@
+/* General styling */
+body {
+    background-color: rgb(133, 174, 206);
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.Pcontainer {
+    background:#e1e8eb;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+}
+
+
+header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+.name-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4b1782;
+}
+.Pcontainer input:focus{
+    outline: 0px;
+}
+.form.error{
+    color: red;
+    font-size: 16px;
+    margin-top: 5px;
+}
+/* .Pcontainer .success input{
+    border-color: rgb(59, 127, 59);
+}
+.Pcontainer .error input{
+      border-color: red;
+} */
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .Pcontainer {
+        width: 90%;
+        padding: 20px;
+    }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="./CSS/profile.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
+</head>
+<body>
+    <div class="Pcontainer">
+        <div class="Profile-Page">
+            <header>Profile</header>
+            <form id="profileForm">
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" id="firstname" placeholder="First Name" required>
+                
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" id="lastname" placeholder="Last Name" required>
+                
+                <label for="age">Age</label>
+                <input type="number" class="form-control" id="age" placeholder="Enter your age" required>
+                
+                <label for="dob">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" required>
+
+                <!-- <label>Gender</label>
+                <div class="gender-options">
+                    
+                    <input type="radio" id="male" name="gender" value="Male" required>
+                    <label for="male">Male</label>
+                    
+                    <input type="radio" id="female" name="gender" value="Female">
+                    <label for="female">Female</label>
+                    
+                    <input type="radio" id="other" name="gender" value="Other">
+                    <label for="other">Other</label>
+                </div> -->
+                
+                <label for="address">Address</label>
+<!-- <textarea id="address" class="form-control" placeholder="Enter your full address" required></textarea> -->
+                <input type="address"  class="form-control" id="address" placeholder="Enter your full address" required>
+
+                
+                <label for="contact">Contact</label>
+                <input type="tel" class="form-control" id="contact" placeholder="Mobile Number" required>
+                
+                <button type="submit" id="submitProfile">Submit</button>
+                <div class="error"></div>
+            </form>
+        </div>
+    </div>
+    <script src="javascript/profile.js"></script>
+</body>
+</html>
