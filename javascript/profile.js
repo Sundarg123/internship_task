@@ -1,6 +1,6 @@
 $(document).ready(function () {
     let token = localStorage.getItem("token")
-    console.log("token", token)
+    // console.log("token", token)
     if(!token){
         window.location.href = "login.html"
     }
@@ -33,7 +33,7 @@ $('#profileForm').on('submit', function (e) {
         },
         dataType: "json",
         success: function (response) {
-            if (response.status === "success") {
+            if (response.success) {
                 alert("Profile Updated Successfully!");
             } else {
                 alert("Error: " + response.message);

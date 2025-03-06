@@ -2,56 +2,56 @@
 include '../vendor/autoload.php';
 include '../connections/db.php';
 include '../connections/redis.php'; 
+include '../connections/mongodb.php'; // Ensure MongoDB connection
 
-header('Content-Type: application/json');
-
-    $token = $_POST["token"];
-    $action = $_POST["action"];
-
-
-
-?>
-<?php
-require_once '../db/connect_mongo.php';
-require_once 'redis_session.php';
+header('Content-Type: application/json');  // Ensure proper JSON response
+header('Access-Control-Allow-Origin: *'); // Allow cross-origin AJAX calls
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
 
 // Function to update profile data
-function updateProfileData($userID, $profileData) {
-    global $mongo;
-    $profileCollection = $mongo->mydb->profiles;
-    
-    $updateResult = $profileCollection->updateOne(
-        ['userID' => $userID],
-        ['$set' => $profileData],
-        ['upsert' => true] // Insert if not found
-    );
+function updateProfileData($email, $profileData) {
+    global $mongoClient;
+$profileCollection = $mongoClient->selectDatabase("myprofile")->selectCollection("users");
 
-    return $updateResult->getModifiedCount() > 0;
+
+    try {
+        $updateResult = $profileCollection->updateOne(
+            ['email' => $email],
+            ['$set' => $profileData],
+            ['upsert' => true] // Insert if not found
+        );
+
+        return $updateResult->getModifiedCount() > 0 || $updateResult->getUpsertedCount() > 0;
+        
+    } catch (Exception $e) {
+        error_log("MongoDB Update Error: " . $e->getMessage());
+        return false;
+    }
 }
 
-$sessionID = $_POST['sessionID'];
-$action = $_POST['action'];
+// Get POST data safely
+$token = $_POST['token'] ?? '';
+$action = $_POST['action'] ?? '';
 $data = $_POST['data'] ?? [];
-$response = [];
 
 // Validate session ID and get user ID
-$userID = getSession($sessionID);
+$email = $redis->get($token);
 
-if (!$userID) {
-    $response['success'] = false;
-    $response['message'] = 'Please login again';
-} elseif ($action === 'update') {
-    if (updateProfileData($userID, $data)) {
-        $response['success'] = true;
-        $response['message'] = 'Profile updated successfully';
-    } else {
-        $response['success'] = false;
-        $response['message'] = 'No changes made or update failed';
-    }
-} else {
-    $response['success'] = false;
-    $response['message'] = 'Invalid action';
+if (!$email) {
+    echo json_encode(["success" => false, "message" => "Please login again"]);
+    exit;
 }
 
+if ($action !== 'update') {
+    echo json_encode(["success" => false, "message" => "Invalid action"]);
+    exit;
+}
+
+$response = updateProfileData($email, $data)
+    ? ["success" => true, "message" => "Profile updated successfully"]
+    : ["success" => false, "message" => "No changes made or update failed"];
+
 echo json_encode($response);
+exit;
 ?>
