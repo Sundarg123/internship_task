@@ -1,6 +1,5 @@
 $(document).ready(function () {
     let token = localStorage.getItem("token")
-    // console.log("token", token)
     if(!token){
         window.location.href = "login.html"
     }
@@ -39,8 +38,6 @@ $('#profileForm').on('submit', function (e) {
                 alert("Error: " + response.message);
             }
         },
-        // error: function () {
-        //     alert("Something went wrong. Please try again.");
         error: function (xhr, status, error) {
             console.error("AJAX Error:", error);
             console.log("Response Text:", xhr.responseText); 
