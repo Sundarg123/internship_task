@@ -7,11 +7,11 @@ $(document).ready(function () {
         $.ajax({
             url: "http://localhost/intern/Php/profile.php",
             type: "POST",
-            data: { token: token },
+            data: { token: token, action: "fetch" },
             dataType: "json",
             success: function (response) {
                 if (response.success){
-    
+                let profile = response.profile;
                  $('#firstname').val(profile.firstname);
                  $('#lastname').val(profile.lastname);
                  $('#age').val(profile.age);
@@ -23,8 +23,13 @@ $(document).ready(function () {
                 alert(response.message);
             }
         },
+        error: function (xhr, status, error) {
+            console.error("AJAX Error:", error);
+            console.log("Response Text:", xhr.responseText);
+            alert("Failed to fetch profile data. Please try again.");
+        }
         });
-        
+
 $('#profileForm').on('submit', function (e) {
     e.preventDefault();
 
@@ -46,7 +51,7 @@ $('#profileForm').on('submit', function (e) {
         url: "http://localhost/intern/Php/profile.php",
         type: "POST",
         data: {
-            data: profileData,
+            data: JSON.stringify (profileData),
             action: "update",
             token: token
         },
@@ -54,8 +59,10 @@ $('#profileForm').on('submit', function (e) {
         success: function (response) {
             if (response.success) {
                 alert("Profile Updated Successfully!");
+                
             } else {
                 alert("Error: " + response.message);
+                window.location.href = "login.html"; //Redirect to login page!
             }
         },
         error: function (xhr, status, error) {

@@ -8,7 +8,12 @@ header('Content-Type: application/json');  // Ensure proper JSON response
 header('Access-Control-Allow-Origin: *'); // Allow cross-origin AJAX calls
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
-
+// Function to get profile data
+function getProfileData($email){
+    global $mongoClient;
+    $profileCollection =$mongoClient->myprofile->users;
+    return $profileCollection->findOne(['email' => $email]);
+}
 // Function to update profile data
 function updateProfileData($email, $profileData) {
     global $mongoClient;
@@ -38,31 +43,28 @@ $data = $_POST['data'] ?? [];
 // Validate session ID and get user ID
 $email = $redis->get($token);
 
-if($email){
-    $profile = getProfileData($email);
-    if($profile){
-        $response['success'] = true;
-        $response['profile'] = $profile;
-    }
-    else{
-        $response['success'] = false;
-        $response['message'] = 'Please update your profile';
-    }
-}
 if (!$email) {
     echo json_encode(["success" => false, "message" => "Please login again"]);
     exit;
 }
 
-if ($action !== 'update') {
-    echo json_encode(["success" => false, "message" => "Invalid action"]);
-    exit;
+if($action === 'fetch'){
+    $profile = getProfileData($email);
+    if($profile){
+        echo json_encode(["success" => true, "profile" => $profile]);
+    }
+    else{
+        echo json_encode(["success" => false, "message" => "Please update your profile"]);
+    }
 }
 
-$response = updateProfileData($email, $data)
+if ($action == 'update') {
+    $response = updateProfileData($email, $data)
     ? ["success" => true, "message" => "Profile updated successfully"]
     : ["success" => false, "message" => "No changes made or update failed"];
-
-echo json_encode($response);
+    echo json_encode($response);
+    exit;
+}
+echo json_encode(["success" => false, "message" => "Invalid action"]);
 exit;
 ?>
