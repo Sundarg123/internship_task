@@ -35,11 +35,10 @@ $(document).ready(function () {
                 dataType: 'json',
                 success: function (response) {
                     if (response.success) {
+                        localStorage.setItem("hash",response.hash);
                         localStorage.setItem("token",response.token); // Store session info
                         window.location.href = "profile.html"; // Redirect to profile page
-                        // setTimeout(function () {
-                        //     window.location.href = "profile.html";
-                        // }, 1000);
+                    
                     } else {
                         alert(response.message)
                     }

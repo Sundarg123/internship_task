@@ -60,6 +60,24 @@ button.btn:hover {
     background-color:  #4b1782;
 }
 
+a {
+    color: #2575fc;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 10px 0;
+    text-align: right;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  .Login{
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+  }
+
 .form-group input:focus{
 outline: 0px  ;
 }

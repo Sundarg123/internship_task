@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $user['password'])) {
             $token = bin2hex(random_bytes(16));
             $redis->setex($token,3600,$email);
-            echo json_encode(['success'=> true,'message'=> 'Login Successfull', 'token' => $token]);
+            echo json_encode(['success'=> true,'message'=> 'Login Successfull', 'token' => $token, 'hash' => $user['hash']]);
         } 
         else {
             echo json_encode(['success' => false, 'message' => 'Incorrect Password']);

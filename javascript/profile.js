@@ -4,7 +4,27 @@ $(document).ready(function () {
         window.location.href = "login.html"
     }
 
+        $.ajax({
+            url: "http://localhost/intern/Php/profile.php",
+            type: "POST",
+            data: { token: token },
+            dataType: "json",
+            success: function (response) {
+                if (response.success){
     
+                 $('#firstname').val(profile.firstname);
+                 $('#lastname').val(profile.lastname);
+                 $('#age').val(profile.age);
+                 $('#dob').val(profile.dob);
+                 $('#address').val(profile.address);
+                 $('#contact').val(profile.contact);
+            }
+            else {
+                alert(response.message);
+            }
+        },
+        });
+        
 $('#profileForm').on('submit', function (e) {
     e.preventDefault();
 

@@ -38,6 +38,17 @@ $data = $_POST['data'] ?? [];
 // Validate session ID and get user ID
 $email = $redis->get($token);
 
+if($email){
+    $profile = getProfileData($email);
+    if($profile){
+        $response['success'] = true;
+        $response['profile'] = $profile;
+    }
+    else{
+        $response['success'] = false;
+        $response['message'] = 'Please update your profile';
+    }
+}
 if (!$email) {
     echo json_encode(["success" => false, "message" => "Please login again"]);
     exit;
