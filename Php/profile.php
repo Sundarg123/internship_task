@@ -7,7 +7,7 @@ include '../connections/mongodb.php'; // Ensure MongoDB connection
 header('Content-Type: application/json');  // Ensure proper JSON response
 header('Access-Control-Allow-Origin: *'); // Allow cross-origin AJAX calls
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
+// header('Access-Control-Allow-Headers: Content-Type');
 // Function to get profile data
 function getProfileData($email){
     global $mongoClient;
