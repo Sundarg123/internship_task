@@ -1,5 +1,6 @@
 $(document).ready(function () {
     let token = localStorage.getItem("token")
+    let hash= localStorage.getItem("hash")
     if(!token){
         window.location.href = "login.html"
     }
@@ -7,7 +8,7 @@ $(document).ready(function () {
         $.ajax({
             url: "http://localhost/intern/Php/profile.php",
             type: "POST",
-            data: { token: token, action: "fetch" },
+            data: { token: token, action: "fetch", data: JSON.stringify ({"hash":hash}) },
             dataType: "json",
             success: function (response) {
                 if (response.success){
@@ -38,7 +39,7 @@ $('#profileForm').on('submit', function (e) {
     }
 
     let profileData = {
-        email: localStorage.getItem("hash"),  // Get stored email
+        hash: localStorage.getItem("hash"),  // Get stored email
         firstname: $('#firstname').val(),
         lastname: $('#lastname').val(),
         age: $('#age').val(),
