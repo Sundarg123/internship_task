@@ -101,7 +101,7 @@ function validateProfileForm() {
         $('#lastname').after('<div class="error">Last name is required</div>');
     }
 
-    if (age === '' || isNaN(age) || age < 1 || age > 120) {
+    if (age === '' || isNaN(age) || age <= 1 || age >= 120) {
         isValid = false;
         $('#age').after('<div class="error">Enter a valid age (1-120)</div>');
     }

@@ -1,4 +1,12 @@
 $(document).ready(function () {
+    $("#loader").show();
+    $(".container-body").hide();
+
+    setTimeout(function () {
+         $(".container-body").show();
+        $("#loader").hide();
+    }, 1000);
+    
     $('#signupForm').on('submit', function (e) {
         e.preventDefault();
         
@@ -14,6 +22,7 @@ $(document).ready(function () {
                 },
                 dataType: "json",
                 success: function (response) {
+                    $('#loader').hide(); // Hide loader when the response is received
                     if (response.status === "success") {
                         alert("Registration successful!");
                         window.location.href = "login.html"; // Redirect after successful signup
@@ -22,6 +31,8 @@ $(document).ready(function () {
                     }
                 },
                 error: function () {
+                    $('#loader').hide();
+                    $("body").removeClass("blur-effect"); // Hide loader on error
                     alert("Something went wrong. Please try again.");
                 }
             });

@@ -86,7 +86,7 @@ if ($action === 'update') {
     
     echo json_encode($response);
     exit;
-}
+}   
 
 echo json_encode(["success" => false, "message" => "Invalid action"]);
 exit;
